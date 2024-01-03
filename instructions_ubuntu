@@ -1,0 +1,95 @@
+# Clone the repository
+git clone https://github.com/roboflow/supervision.git
+cd supervision/examples/traffic_analysis
+
+# Create and activate a virtual environment (optional but recommended)
+python3 -m venv venv
+source venv/bin/activate
+
+# Install required dependencies
+pip install -r requirements.txt
+
+# Download weights and video files
+./setup.sh
+
+  
+  python script.py \
+  --source_weights_path data/traffic_analysis.pt \
+  --source_video_path data/retest.mp4 \
+  --confidence_threshold 0.3 \
+  --iou_threshold 0.5 \
+  --target_video_path data/retest_result.mp4
+  
+    python script.py --source_weights_path data/traffic_analysis.pt --source_video_path data/aerial_traffic.mp4 --confidence_threshold 0.3 --iou_threshold 0.5 --target_video_path data/aerial_traffic_result.mp4
+  
+  
+  correct_table = {
+    1: {1, 11, 12, 14, 15, 6},
+    2: {13, 10, 11, 7, 8},
+    3: {9, 7, 6, 4, 3},
+    4: {2, 3, 5, 15, 16},
+    # Add more entries as needed
+}
+
+ZONE_IN_POLYGONS = [
+    np.array([[260, 611], [308, 570], [318, 585], [270, 627]]), #bottom left
+    np.array([[270, 631], [328, 583], [344, 601], [291, 648]]),
+    np.array([[297, 653], [354, 600], [364, 624], [311, 672]]),
+    np.array([[330, 694], [392, 642], [375, 625], [314, 678]]),
+    np.array([[513, 4], [562, 40], [543, 67], [491, 26]]), #top left
+    np.array([[462, 9], [506, 46], [474, 93], [414, 41]]),
+    np.array([[383, 22], [440, 71], [422, 90], [370, 44]]),
+    np.array([[366, 48], [344, 69], [397, 109], [415, 92]]),
+    np.array([[1094, 149], [1114, 167], [1064, 217], [1044, 205]]), #top right
+    np.array([[1095, 149], [1047, 106], [1008, 150], [1058, 183]]),
+    np.array([[1020, 88], [1044, 102], [1012, 140], [991, 126]]), 
+    np.array([[1023, 78], [1003, 63], [957, 111], [976, 133]]),
+    np.array([[779, 691], [798, 672], [828, 695], [803, 715]]), #bottom right
+    np.array([[804, 668], [839, 618], [893, 664], [860, 713]]),
+    np.array([[895, 662], [919, 645], [973, 692], [957, 715]]),
+    np.array([[1003, 713], [1018, 688], [967, 643], [957, 672]]),
+]
+
+ZONE_OUT_POLYGONS = [
+    np.array([[274, 221], [355, 129], [395, 166], [318, 261]]),
+    np.array([[504, 711], [434, 641], [489, 594], [558, 668]]),
+    np.array([[1012, 460], [1077, 517], [1001, 618], [942, 566]]),
+    np.array([[754, 76], [801, 25], [905, 93], [848, 153]]),
+]
+
+ZONE_IN_SCOOT = [
+    np.array([[421, 502], [479,561], [522, 529], [457, 462]]),
+    np.array([[791, 666], [877, 568], [832, 530], [755, 630]]),
+    np.array([[931, 321], [967, 283], [874, 201], [839, 239]]),
+    np.array([[547, 241], [509, 205], [590, 113], [631, 145]]),
+]
+
+ZONE_IN_POLYGONS = [
+    np.array([[150, 185], [142, 210], [186, 235], [203, 213]]), #top left
+    np.array([[154, 183], [167, 157], [228, 188], [218, 212]]),
+    np.array([[276, 206], [290, 183], [227, 149], [213, 172]]),
+    np.array([[914, 181], [903, 196], [974, 173], [966, 154]]), #top right
+    np.array([[920, 232], [913, 201], [973, 176], [987, 206]]), 
+    np.array([[1038, 192], [1046, 217], [967, 250], [955, 220]]),
+    np.array([[1118, 537], [1125, 526], [1197, 565], [1193, 580]]), #bottom right
+    np.array([[908, 456], [897, 485], [945, 509], [962, 484]]),
+    np.array([[1053, 569], [1043, 593], [976, 562], [986, 536]]), 
+    np.array([[3, 618], [5, 635], [101, 599], [96, 577]]), # bottom left
+    np.array([[364, 509], [374, 536], [314, 558], [308, 526]]), 
+    np.array([[313, 563], [313, 577], [379, 556], [373, 538]]),
+]
+
+ZONE_OUT_POLYGONS = [
+    np.array([[401, 223], [421, 181], [480, 212], [465, 260]]),
+    np.array([[1056, 277], [1038, 230], [1106, 208], [1123, 250]]),
+    np.array([[800, 482], [845, 505], [831, 556], [780, 529]]),
+    np.array([[218, 452], [226, 499], [162, 516], [150, 486]]),
+]
+
+ZONE_IN_SCOOT = [
+    np.array([[420, 339], [458, 269], [482, 280], [445, 353]]),
+    np.array([[795, 315], [826, 302], [796, 224], [763, 235]]),
+    np.array([[819, 389], [849, 403], [815, 475], [787, 456]]),
+    np.array([[465, 430], [440, 442], [473, 517], [498, 507]]),
+]
+
